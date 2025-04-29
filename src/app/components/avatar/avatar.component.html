@@ -1,0 +1,10 @@
+<div class="avatar" [ngClass]="size">
+  <ng-container *ngIf="imageUrl; else initialsTemplate">
+    <img [src]="imageUrl" [alt]="altText" class="avatar-image">
+  </ng-container>
+  <ng-template #initialsTemplate>
+    <div class="initials-container" [style.background-color]="backgroundColor">
+      {{ getInitials() }}
+    </div>
+  </ng-template>
+</div>

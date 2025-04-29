@@ -1,0 +1,153 @@
+<!-- Hero Section -->
+<section class="relative min-h-[60vh] flex items-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="assets/images/portfolio/hero-bg.jpg" 
+         alt="Our Portfolio" 
+         class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.1)_0%,transparent_100%)]"></div>
+  </div>
+  
+  <div class="container relative z-10 text-white">
+    <div class="max-w-3xl">
+      <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight animate-fade-in hover-float">
+        <span class="gradient-text">Our Portfolio</span><br>
+        Success Stories in Motion
+      </h1>
+      <p class="text-xl md:text-2xl mb-10 text-gray-200 animate-fade-in-up leading-relaxed">
+        Explore our collection of successful events that showcase our expertise and creativity.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Authentication Check -->
+<div *ngIf="!authService.isAuthenticated()" class="section bg-white dark:bg-gray-900">
+  <div class="container">
+    <div class="max-w-3xl mx-auto text-center animate-on-scroll scale-in" #animateOnScroll>
+      <div class="glass-card p-8 md:p-12">
+        <i class="fas fa-lock text-6xl text-indigo-600 dark:text-indigo-400 mb-6"></i>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">Authentication Required</h2>
+        <p class="text-xl mb-8 text-gray-600 dark:text-gray-300">
+          Please log in to view our complete portfolio of events and success stories.
+        </p>
+        <button (click)="login()" 
+                class="btn btn-primary text-lg px-8 py-4 hover-scale hover-glow inline-flex items-center">
+          <i class="fas fa-sign-in-alt mr-2"></i>
+          Log In
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Portfolio Content (Only shown when authenticated) -->
+<ng-container *ngIf="authService.isAuthenticated()">
+  <!-- Filter Categories -->
+  <section class="section bg-white dark:bg-gray-900">
+    <div class="container">
+      <div class="flex flex-wrap justify-center gap-4 animate-on-scroll fade-up" #animateOnScroll>
+        <button *ngFor="let category of categories"
+                (click)="filterByCategory(category.name)"
+                [class.bg-indigo-600]="selectedCategory === category.name"
+                [class.text-white]="selectedCategory === category.name"
+                class="px-6 py-3 rounded-full border border-indigo-600 hover:bg-indigo-600 hover:text-white 
+                       transition-all duration-300 flex items-center gap-2 hover-scale hover-glow">
+          <i [class]="category.icon"></i>
+          {{category.name}}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Grid -->
+  <section class="section bg-gray-50 dark:bg-gray-800">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div *ngFor="let item of filteredItems; let i = index" 
+             class="animate-on-scroll fade-up"
+             [style.animation-delay]="i * 100 + 'ms'"
+             #animateOnScroll>
+          <!-- Portfolio Card -->
+          <div class="card overflow-hidden group cursor-pointer"
+               [routerLink]="['/portfolio', item.title]">
+            <!-- Image -->
+            <div class="relative h-80 overflow-hidden">
+              <img [src]="item.image" 
+                   [alt]="item.title"
+                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+              <div class="absolute top-4 right-4">
+                <span class="px-4 py-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-full text-sm font-medium">
+                  {{item.category}}
+                </span>
+              </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="p-8">
+              <h3 class="text-2xl font-bold mb-4 dark:text-white">{{item.title}}</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{{item.description}}</p>
+              
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-500 dark:text-gray-400">{{item.client}}</span>
+                <span class="text-gray-500 dark:text-gray-400">{{item.date}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section bg-gradient-to-br from-indigo-600 to-indigo-800 dark:from-indigo-800 dark:to-indigo-900 text-white">
+    <div class="container">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div *ngFor="let stat of stats; let i = index" 
+             class="glass-card p-8 text-center animate-on-scroll fade-up hover-rotate"
+             [style.animation-delay]="i * 100 + 'ms'"
+             #animateOnScroll>
+          <div class="w-20 h-20 bg-gradient-to-br rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 animate-float"
+               [ngClass]="stat.color">
+            <i [class]="stat.icon + ' text-4xl text-white'"></i>
+          </div>
+          <div class="text-4xl md:text-5xl font-bold mb-3 animate-pulse-slow">{{stat.value}}</div>
+          <div class="text-lg text-indigo-100">{{stat.label}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logout Button -->
+  <section class="section bg-white dark:bg-gray-900">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center animate-on-scroll scale-in" #animateOnScroll>
+        <button (click)="logout()" 
+                class="btn btn-outline text-lg px-8 py-4 hover-scale hover-glow inline-flex items-center">
+          <i class="fas fa-sign-out-alt mr-2"></i>
+          Log Out
+        </button>
+      </div>
+    </div>
+  </section>
+</ng-container>
+
+<!-- CTA Section -->
+<section class="section bg-white dark:bg-gray-900">
+  <div class="container">
+    <div class="max-w-3xl mx-auto text-center animate-on-scroll scale-in" #animateOnScroll>
+      <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text">Ready to Create Your Event?</h2>
+      <p class="text-xl mb-10 text-gray-600 dark:text-gray-300 leading-relaxed">
+        Let's work together to bring your vision to life. Contact us today to start planning your next event.
+      </p>
+      <a routerLink="/contact" 
+         class="btn btn-primary text-lg px-8 py-4 hover-scale hover-glow inline-flex items-center">
+        Get in Touch
+        <svg class="w-5 h-5 ml-2 animate-bounce-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

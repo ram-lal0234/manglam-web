@@ -1,0 +1,26 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// Image hover effect
+.aspect-video {
+  aspect-ratio: 16/9;
+  
+  img {
+    transition: transform 0.3s ease;
+  }
+}
+
+// Sticky sidebar
+.sticky {
+  position: sticky;
+  top: 2rem;
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .sticky {
+    position: static;
+  }
+}

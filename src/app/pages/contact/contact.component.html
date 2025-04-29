@@ -1,0 +1,198 @@
+<!-- Hero Section -->
+<section class="relative min-h-[60vh] flex items-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img
+      src="assets/images/contact/hero-bg.jpg"
+      alt="Contact Us"
+      class="w-full h-full object-cover"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"
+    ></div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.1)_0%,transparent_100%)]"
+    ></div>
+  </div>
+
+  <div class="container relative z-10 text-white">
+    <div class="max-w-3xl">
+      <h1
+        class="text-5xl md:text-7xl font-bold mb-8 leading-tight animate-fade-in hover-float"
+      >
+        <span class="gradient-text">Contact Us</span><br />
+        Let's Start Planning Your Event
+      </h1>
+      <p
+        class="text-xl md:text-2xl mb-10 text-gray-200 animate-fade-in-up leading-relaxed"
+      >
+        Get in touch with our team to discuss your event requirements and let us
+        help you create something extraordinary.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Details -->
+<section class="section bg-white dark:bg-gray-900">
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div
+        *ngFor="let detail of contactDetails; let i = index"
+        class="glass-card p-8 text-center animate-on-scroll fade-up hover-rotate"
+        [style.animation-delay]="i * 100 + 'ms'"
+        #animateOnScroll
+      >
+        <div
+          class="w-20 h-20 bg-gradient-to-br rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 animate-float"
+          [ngClass]="detail.color"
+        >
+          <i [class]="detail.icon + ' text-4xl text-white'"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4 dark:text-white">
+          {{ detail.title }}
+        </h3>
+        <div class="space-y-2">
+          <p
+            *ngFor="let item of detail.details"
+            class="text-gray-600 dark:text-gray-300"
+          >
+            {{ item }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form -->
+<section class="section bg-gray-50 dark:bg-gray-800">
+  <div class="container">
+    <div class="max-w-4xl mx-auto">
+      <div
+        class="glass-card p-8 md:p-12 animate-on-scroll scale-in"
+        #animateOnScroll
+      >
+        <h2
+          class="text-3xl md:text-4xl font-bold mb-8 text-center gradient-text"
+        >
+          Send Us a Message
+        </h2>
+
+        <form (ngSubmit)="onSubmit()" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label
+                for="name"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >Name</label
+              >
+              <input
+                type="text"
+                id="name"
+                [(ngModel)]="contactInfo.name"
+                name="name"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+              />
+            </div>
+
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                [(ngModel)]="contactInfo.email"
+                name="email"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              for="phone"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >Phone</label
+            >
+            <input
+              type="tel"
+              id="phone"
+              [(ngModel)]="contactInfo.phone"
+              name="phone"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+            />
+          </div>
+
+          <div>
+            <label
+              for="subject"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >Subject</label
+            >
+            <input
+              type="text"
+              id="subject"
+              [(ngModel)]="contactInfo.subject"
+              name="subject"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+            />
+          </div>
+
+          <div>
+            <label
+              for="message"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >Message</label
+            >
+            <textarea
+              id="message"
+              [(ngModel)]="contactInfo.message"
+              name="message"
+              rows="5"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary w-full text-lg py-4 hover-scale hover-glow"
+          >
+            Send Message
+          </button>
+        </form>
+
+        <div
+          *ngIf="formSubmitted"
+          class="mt-6 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg animate-fade-in"
+        >
+          Thank you for your message! We'll get back to you soon.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Map Section -->
+<section class="section bg-white dark:bg-gray-900">
+  <div class="container">
+    <div class="glass-card p-8 animate-on-scroll fade-up" #animateOnScroll>
+      <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center gradient-text">
+        Find Us
+      </h2>
+      <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1646781234567!5m2!1sen!2s"
+          width="100%"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        >
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>

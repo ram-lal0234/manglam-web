@@ -1,0 +1,175 @@
+<!-- Hero Section -->
+<section class="relative min-h-[60vh] flex items-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="assets/images/auth/signup-bg.jpg" 
+         alt="Sign Up" 
+         class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.1)_0%,transparent_100%)]"></div>
+  </div>
+  
+  <div class="container relative z-10 text-white">
+    <div class="max-w-3xl">
+      <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight animate-fade-in hover-float">
+        <span class="gradient-text">Create Account</span><br>
+        Join Our Event Community
+      </h1>
+      <p class="text-xl md:text-2xl mb-10 text-gray-200 animate-fade-in-up leading-relaxed">
+        Sign up to access our portfolio, get event updates, and connect with our team.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Signup Form -->
+<section class="section bg-white dark:bg-gray-900">
+  <div class="container">
+    <div class="max-w-md mx-auto">
+      <div class="glass-card p-8 md:p-12 animate-on-scroll scale-in" #animateOnScroll>
+        <!-- Google Signup -->
+        <button (click)="signupWithGoogle()"
+                [disabled]="isLoading"
+                class="w-full btn btn-outline text-lg px-8 py-4 hover-scale hover-glow inline-flex items-center justify-center mb-8">
+          <img src="assets/images/google-logo.png" alt="Google" class="w-6 h-6 mr-2">
+          Continue with Google
+        </button>
+
+        <div class="relative my-8">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white dark:bg-gray-900 text-gray-500">Or continue with</span>
+          </div>
+        </div>
+
+        <!-- Email/Phone Toggle -->
+        <div class="flex justify-center mb-6">
+          <button (click)="toggleSignupMethod()"
+                  class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">
+            {{ isPhoneSignup ? 'Use Email Instead' : 'Use Phone Instead' }}
+          </button>
+        </div>
+
+        <!-- Email Signup Form -->
+        <form *ngIf="!isPhoneSignup" (ngSubmit)="signupWithEmail()" class="space-y-6">
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+            <input type="text" 
+                   id="name" 
+                   [(ngModel)]="signupForm.name" 
+                   name="name"
+                   required
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                          focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                          transition-colors duration-200">
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
+            <input type="email" 
+                   id="email" 
+                   [(ngModel)]="signupForm.email" 
+                   name="email"
+                   required
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                          focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                          transition-colors duration-200">
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Password</label>
+            <input type="password" 
+                   id="password" 
+                   [(ngModel)]="signupForm.password" 
+                   name="password"
+                   required
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                          focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                          transition-colors duration-200">
+          </div>
+
+          <div>
+            <label for="confirmPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Confirm Password</label>
+            <input type="password" 
+                   id="confirmPassword" 
+                   [(ngModel)]="signupForm.confirmPassword" 
+                   name="confirmPassword"
+                   required
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                          focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                          transition-colors duration-200">
+          </div>
+
+          <button type="submit" 
+                  [disabled]="isLoading"
+                  class="btn btn-primary w-full text-lg py-4 hover-scale hover-glow">
+            <span *ngIf="!isLoading">Create Account</span>
+            <span *ngIf="isLoading" class="inline-flex items-center">
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Creating Account...
+            </span>
+          </button>
+        </form>
+
+        <!-- Phone Signup Form -->
+        <form *ngIf="isPhoneSignup" (ngSubmit)="signupWithPhone()" class="space-y-6">
+          <div>
+            <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number</label>
+            <input type="tel" 
+                   id="phone" 
+                   [(ngModel)]="signupForm.phone" 
+                   name="phone"
+                   required
+                   placeholder="+1 (555) 123-4567"
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                          bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                          focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                          transition-colors duration-200">
+          </div>
+
+          <button type="submit" 
+                  [disabled]="isLoading"
+                  class="btn btn-primary w-full text-lg py-4 hover-scale hover-glow">
+            <span *ngIf="!isLoading">Continue with Phone</span>
+            <span *ngIf="isLoading" class="inline-flex items-center">
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Processing...
+            </span>
+          </button>
+        </form>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" 
+             class="mt-6 p-4 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 
+                    rounded-lg animate-fade-in">
+          {{errorMessage}}
+        </div>
+
+        <!-- Login Link -->
+        <div class="mt-8 text-center">
+          <p class="text-gray-600 dark:text-gray-300">
+            Already have an account? 
+            <button (click)="openLoginPopup()" 
+                    class="text-indigo-600 dark:text-indigo-400 hover:underline">
+              Log in
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Login Popup -->
+<app-login *ngIf="showLoginPopup"></app-login> 
