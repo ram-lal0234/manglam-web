@@ -1,191 +1,239 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@layer base {
-  :root {
-    --primary: 99 102 241;
-    --primary-dark: 79 70 229;
-    --primary-light: 129 140 248;
-    --accent: 236 72 153;
-    --background: 250 250 250;
-    --foreground: 17 24 39;
-    --card: 255 255 255;
-    --card-foreground: 17 24 39;
-    --muted: 243 244 246;
-    --muted-foreground: 107 114 128;
-    --border: 229 231 235;
-    --radius: 1rem;
-  }
-
-  .dark {
-    --primary: 129 140 248;
-    --primary-dark: 99 102 241;
-    --primary-light: 165 180 252;
-    --accent: 244 114 182;
-    --background: 17 24 39;
-    --foreground: 243 244 246;
-    --card: 31 41 55;
-    --card-foreground: 243 244 246;
-    --muted: 55 65 81;
-    --muted-foreground: 156 163 175;
-    --border: 55 65 81;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    @apply font-sans text-gray-800 antialiased bg-gray-50 dark:bg-gray-900;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-bold tracking-tight;
-  }
-
-  h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
-  }
-
-  h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
-  }
-
-  h3 {
-    @apply text-2xl md:text-3xl;
-  }
+:root {
+  // Theme Colors
+  --primary: rgb(172, 20, 36);
+  --primary-light: rgb(252, 12, 12);
+  --primary-dark: rgb(140, 0, 0);
+  
+  --text-primary: rgb(51, 51, 51);
+  --text-secondary: rgb(102, 102, 102);
+  --text-light: rgb(255, 255, 255);
+  
+  --bg-primary: rgb(255, 255, 255);
+  --bg-secondary: rgb(250, 250, 250);
+  --bg-tertiary: rgb(245, 245, 245);
+  
+  --border-light: rgb(230, 230, 230);
+  --border-dark: rgb(200, 200, 200);
+  
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.2);
+  
+  --overlay-light: rgba(255, 255, 255, 0.8);
+  --overlay-dark: rgba(0, 0, 0, 0.5);
 }
 
-@layer components {
-  .btn {
-    @apply px-6 py-3 rounded-full transition-all duration-300 font-medium text-sm uppercase tracking-wider;
-  }
+[data-theme="dark"] {
+  --primary: rgb(252, 12, 12);
+  --primary-light: rgb(255, 50, 50);
+  --primary-dark: rgb(172, 20, 36);
+  
+  --text-primary: rgb(255, 255, 255);
+  --text-secondary: rgb(200, 200, 200);
+  --text-light: rgb(255, 255, 255);
+  
+  --bg-primary: rgb(17, 17, 17);
+  --bg-secondary: rgb(26, 26, 26);
+  --bg-tertiary: rgb(34, 34, 34);
+  
+  --border-light: rgb(51, 51, 51);
+  --border-dark: rgb(68, 68, 68);
+  
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-dark: rgba(0, 0, 0, 0.5);
+  
+  --overlay-light: rgba(0, 0, 0, 0.7);
+  --overlay-dark: rgba(0, 0, 0, 0.8);
+}
 
-  .btn-primary {
-    @apply bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold tracking-tight;
+}
+
+h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl;
+}
+
+h2 {
+  @apply text-3xl md:text-4xl lg:text-5xl;
+}
+
+h3 {
+  @apply text-2xl md:text-3xl;
+}
+
+.btn {
+  @apply px-6 py-3 rounded-full transition-all duration-300 font-medium text-sm uppercase tracking-wider;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 
              shadow-lg hover:shadow-xl hover:-translate-y-0.5;
-  }
+}
 
-  .container {
-    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
-  }
+.container {
+  @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+}
 
-  .section {
-    @apply py-16 sm:py-24;
-  }
+.section {
+  @apply py-16 sm:py-24;
+}
 
-  .card {
-    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl 
+.card {
+  @apply bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl 
              transition-all duration-300 border border-gray-100 dark:border-gray-700;
-  }
+}
 
-  .glass-card {
-    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl 
+.glass-card {
+  @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl 
              shadow-sm hover:shadow-xl transition-all duration-300 
              border border-white/20 dark:border-gray-700/20;
-  }
+}
 
-  .input {
-    @apply w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-800 
+.input {
+  @apply w-full px-4 py-3 rounded-xl bg-white dark:bg-gray-800 
              border border-gray-200 dark:border-gray-700 
              focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 
              focus:border-transparent transition-all duration-200;
-  }
+}
 
-  .animate-fade-in {
-    @apply opacity-0 animate-[fadeIn_0.5s_ease-in_forwards];
-  }
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in forwards;
+}
 
-  .animate-fade-in-up {
-    @apply opacity-0 translate-y-4 animate-[fadeInUp_0.5s_ease-out_forwards];
-  }
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
 
-  .animate-on-scroll {
-    @apply opacity-0 transition-all duration-700;
-  }
+.animate-on-scroll {
+  @apply opacity-0 transition-all duration-700;
+}
 
-  .animate-on-scroll.animate-in {
-    @apply opacity-100;
-  }
+.animate-on-scroll.animate-in {
+  @apply opacity-100;
+}
 
-  .animate-on-scroll.animate-in.fade-up {
-    @apply translate-y-0;
-  }
+.animate-on-scroll.animate-in.fade-up {
+  @apply translate-y-0;
+}
 
-  .animate-on-scroll.animate-in.fade-left {
-    @apply translate-x-0;
-  }
+.animate-on-scroll.animate-in.fade-left {
+  @apply translate-x-0;
+}
 
-  .animate-on-scroll.animate-in.fade-right {
-    @apply translate-x-0;
-  }
+.animate-on-scroll.animate-in.fade-right {
+  @apply translate-x-0;
+}
 
-  .animate-on-scroll.animate-in.scale-in {
-    @apply scale-100;
-  }
+.animate-on-scroll.animate-in.scale-in {
+  @apply scale-100;
+}
 
-  .animate-on-scroll.animate-in.bounce-in {
-    @apply scale-100;
-  }
+.animate-on-scroll.animate-in.bounce-in {
+  @apply scale-100;
+}
 
-  .hover-float {
-    @apply transition-transform duration-300 hover:-translate-y-2;
-  }
+.hover-float {
+  @apply transition-transform duration-300 hover:-translate-y-2;
+}
 
-  .hover-scale {
-    @apply transition-transform duration-300 hover:scale-105;
-  }
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
 
-  .hover-rotate {
-    @apply transition-transform duration-300 hover:rotate-3;
-  }
+.hover-rotate {
+  @apply transition-transform duration-300 hover:rotate-3;
+}
 
-  .hover-glow {
-    @apply transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(99,102,241,0.3)] 
+.hover-glow {
+  @apply transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(99,102,241,0.3)] 
              dark:hover:shadow-[0_0_15px_rgba(129,140,248,0.3)];
-  }
+}
 
-  .animate-float {
-    @apply animate-[float_3s_ease-in-out_infinite];
-  }
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
 
-  .animate-pulse-slow {
-    @apply animate-[pulse_3s_cubic-bezier(0.4,0,0.6,1)_infinite];
-  }
+.animate-pulse-slow {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
 
-  .animate-bounce-slow {
-    @apply animate-[bounce_3s_ease-in-out_infinite];
-  }
+.animate-bounce-slow {
+  @apply animate-[bounce_3s_ease-in-out_infinite];
+}
 
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r 
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r 
              from-indigo-600 to-pink-500 dark:from-indigo-400 dark:to-pink-400;
-  }
+}
 
-  .gradient-border {
-    @apply relative before:absolute before:inset-0 before:rounded-2xl before:p-[1px] 
+.gradient-border {
+  @apply relative before:absolute before:inset-0 before:rounded-2xl before:p-[1px] 
              before:bg-gradient-to-r before:from-indigo-600 before:to-pink-500 
              dark:before:from-indigo-400 dark:before:to-pink-400 before:-z-10;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--primary);
   }
 
-  .nav-link {
-    @apply text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 
-             transition-colors duration-200;
+  &.active-link {
+    color: var(--primary);
+    font-weight: 500;
+  }
+}
+
+.cta-button {
+  background-color: var(--primary);
+  color: var(--text-light);
+  padding: 0.625rem 1.5rem;
+  box-shadow: 0 2px 4px var(--shadow-light);
+
+  &:hover {
+    background-color: var(--primary-light);
+    box-shadow: 0 4px 6px var(--shadow-dark);
+  }
+}
+
+.theme-toggle {
+  color: var(--text-secondary);
+  
+  &:hover {
+    background-color: var(--bg-secondary);
+  }
+}
+
+.mobile-menu-button {
+  color: var(--text-secondary);
+  
+  &:hover {
+    background-color: var(--bg-secondary);
   }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes fadeInUp {
@@ -233,8 +281,7 @@
 }
 
 @keyframes float {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0);
   }
   50% {
@@ -271,9 +318,8 @@
   }
 }
 
-@keyframes pulse-slow {
-  0%,
-  100% {
+@keyframes pulse {
+  0%, 100% {
     opacity: 1;
   }
   50% {

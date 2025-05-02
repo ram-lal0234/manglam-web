@@ -1,0 +1,161 @@
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b shadow-sm">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a routerLink="/" class="flex items-center space-x-3">
+        <img src="../../../assets/images/logo.png" alt="Manglam Event" class="h-12 w-auto">
+        <span class="text-2xl font-bold" style="color: var(--primary)">Manglam Event</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a
+          routerLink="/"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+          class="nav-link text-lg"
+        >
+          Home
+        </a>
+        <a
+          routerLink="/services"
+          routerLinkActive="active-link"
+          class="nav-link text-lg"
+        >
+          Services
+        </a>
+        <a
+          routerLink="/portfolio"
+          routerLinkActive="active-link"
+          class="nav-link text-lg"
+        >
+          Portfolio
+        </a>
+        <a
+          routerLink="/about"
+          routerLinkActive="active-link"
+          class="nav-link text-lg"
+        >
+          About Us
+        </a>
+        <a
+          routerLink="/contact"
+          routerLinkActive="active-link"
+          class="nav-link text-lg"
+        >
+          Contact
+        </a>
+        <a
+          routerLink="/contact"
+          class="cta-button text-lg font-medium rounded-full transition-all transform hover:scale-105"
+        >
+          Get Started
+        </a>
+      </div>
+
+      <!-- Theme Toggle -->
+      <button
+        (click)="toggleTheme()"
+        class="theme-toggle p-2 rounded-lg focus:outline-none transition-all"
+        aria-label="Toggle theme"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          [class.hidden]="isDarkMode"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          [class.hidden]="!isDarkMode"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+      </button>
+
+      <!-- Mobile Menu Button -->
+      <button
+        (click)="toggleMenu()"
+        class="mobile-menu-button md:hidden p-2 rounded-lg focus:outline-none transition-all"
+        aria-label="Toggle menu"
+      >
+        <svg
+          class="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          [class.hidden]="isMenuOpen"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg
+          class="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          [class.hidden]="!isMenuOpen"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      class="mobile-menu md:hidden"
+      [class.hidden]="!isMenuOpen"
+      [@slideInOut]
+    >
+      <div class="px-2 pt-2 pb-4 space-y-2">
+        <a
+          routerLink="/"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact: true}"
+          class="nav-link block px-4 py-3 rounded-lg text-lg font-medium"
+        >
+          Home
+        </a>
+        <a
+          routerLink="/services"
+          routerLinkActive="active-link"
+          class="nav-link block px-4 py-3 rounded-lg text-lg font-medium"
+        >
+          Services
+        </a>
+        <a
+          routerLink="/portfolio"
+          routerLinkActive="active-link"
+          class="nav-link block px-4 py-3 rounded-lg text-lg font-medium"
+        >
+          Portfolio
+        </a>
+        <a
+          routerLink="/about"
+          routerLinkActive="active-link"
+          class="nav-link block px-4 py-3 rounded-lg text-lg font-medium"
+        >
+          About Us
+        </a>
+        <a
+          routerLink="/contact"
+          routerLinkActive="active-link"
+          class="nav-link block px-4 py-3 rounded-lg text-lg font-medium"
+        >
+          Contact
+        </a>
+        <a
+          routerLink="/contact"
+          class="cta-button block w-full text-center px-6 py-3 text-lg font-medium mt-4 rounded-full transition-all transform hover:scale-105"
+        >
+          Get Started
+        </a>
+      </div>
+    </div>
+  </div>
+</nav> 

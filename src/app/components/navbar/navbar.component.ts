@@ -1,90 +1,65 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
-  template: `
-    <nav
-      [class.shadow-md]="isScrolled"
-      class="fixed w-full bg-white z-50 transition-all duration-300"
-    >
-      <div class="container">
-        <div class="flex items-center justify-between h-16">
-          <a routerLink="/" class="text-2xl font-bold text-primary-600">
-            <img src="assets/images/logo.png" alt="Logo" class="h-8" />
-          </a>
-
-          <!-- Desktop Menu -->
-          <div class="hidden md:flex space-x-8">
-            <a
-              *ngFor="let item of menuItems"
-              [routerLink]="item.path"
-              routerLinkActive="text-primary-600"
-              class="text-gray-600 hover:text-primary-600 transition-colors"
-            >
-              {{ item.label }}
-            </a>
-          </div>
-
-          <!-- Mobile Menu Button -->
-          <button (click)="toggleMobileMenu()" class="md:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="{2}"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div *ngIf="isMobileMenuOpen" class="md:hidden">
-          <div class="px-2 pt-2 pb-3 space-y-1">
-            <a
-              *ngFor="let item of menuItems"
-              [routerLink]="item.path"
-              routerLinkActive="bg-primary-50 text-primary-600"
-              (click)="toggleMobileMenu()"
-              class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-primary-50 hover:text-primary-600"
-            >
-              {{ item.label }}
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  `,
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({ transform: 'translateY(-100%)', opacity: 0 }),
+        animate('300ms ease-out', style({ transform: 'translateY(0)', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-in', style({ transform: 'translateY(-100%)', opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class NavbarComponent {
+  isMenuOpen = false;
+  isDarkMode = false;
   isScrolled = false;
-  isMobileMenuOpen = false;
 
-  menuItems = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/services', label: 'Services' },
-    { path: '/portfolio', label: 'Portfolio' },
-    { path: '/team', label: 'Team' },
-    { path: '/contact', label: 'Contact' },
-  ];
+  constructor() {
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      this.isDarkMode = true;
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      // Default to light theme
+      this.isDarkMode = false;
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }
 
-  @HostListener('window:scroll')
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    if (this.isDarkMode) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
+  @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 0;
   }
 
-  toggleMobileMenu() {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 }

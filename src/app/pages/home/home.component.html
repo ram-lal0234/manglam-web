@@ -1,234 +1,121 @@
 <!-- Hero Section -->
-<section class="relative min-h-[90vh] flex items-center overflow-hidden">
-  <!-- Background Image with Overlay -->
-  <div class="absolute inset-0 z-0">
-    <img
-      src="../../../assets/images/event-bg.jpg"
-      alt="Event background"
-      class="w-full h-full object-cover"
-    />
-    <div
-      class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"
-    ></div>
-    <div
-      class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.1)_0%,transparent_100%)]"
-    ></div>
-  </div>
-
-  <!-- Hero Content -->
-  <div class="container relative z-10 text-white">
-    <div class="max-w-3xl">
-      <h1
-        class="text-5xl md:text-7xl font-bold mb-8 leading-tight animate-fade-in hover-float"
-      >
-        <span class="gradient-text">Crafting</span><br />
-        Unforgettable Moments
-      </h1>
-      <p
-        class="text-xl md:text-2xl mb-10 text-gray-200 animate-fade-in-up leading-relaxed"
-      >
-        At the Manglam Event, we started with a simple desire: to enhance the
-        beauty of joyful moments and celebrate the happiness of someone's
-        special day. Our goal has always been to be a part of your joy, bringing
-        your vision to life with love and care. It is a heartfelt honor for us
-        to contribute to the most important day of your life, fully immersing
-        ourselves in every detail of your celebration. Each moment we create
-        together is a beautiful reflection of your dreams.
-      </p>
-      <div class="flex flex-wrap gap-6 animate-fade-in-up">
-        <a
-          routerLink="/contact"
-          class="btn btn-primary text-lg px-8 py-4 hover-scale hover-glow"
-        >
-          Start Planning
+<section class="hero-section">
+  <video autoplay loop muted playsinline>
+    <source src="../../../assets/videos/hero-video.mp4" type="video/mp4">
+  </video>
+  <div class="overlay">
+    <div class="content">
+      <h1>Create Unforgettable Moments</h1>
+      <p>We transform your dreams into reality with our expert event planning and management services.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a routerLink="/contact" class="cta-button">
+          Get Started
         </a>
-        <a
-          routerLink="/portfolio"
-          class="btn bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 text-lg px-8 py-4 hover-scale hover-glow"
-        >
-          View Our Work
+        <a routerLink="/services" class="cta-button-secondary">
+          Our Services
         </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Services Preview -->
-<section class="section bg-white dark:bg-gray-900">
-  <div class="container">
-    <div class="text-center mb-20 animate-on-scroll fade-up" #animateOnScroll>
-      <h2 class="text-3xl md:text-4xl font-bold mb-6 hover-float gradient-text">
-        Our Services
-      </h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        From intimate gatherings to grand celebrations, we bring your events to
-        life with precision and passion
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      <div
-        *ngFor="let service of services; let i = index"
-        class="card p-8 animate-on-scroll fade-up hover-rotate"
-        [style.animation-delay]="i * 100 + 'ms'"
-        #animateOnScroll
-      >
-        <div
-          class="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/30 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/50 transition-colors duration-300 animate-float"
-        >
-          <i
-            [class]="
-              service.icon + ' text-3xl text-indigo-600 dark:text-indigo-400'
-            "
-          ></i>
-        </div>
-        <h3 class="text-xl font-semibold mb-4 dark:text-white">
-          {{ service.title }}
-        </h3>
-        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-          {{ service.description }}
-        </p>
-        <a
-          routerLink="/services"
-          class="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-medium group-hover:text-indigo-700 dark:group-hover:text-indigo-300 hover-glow"
-        >
-          Learn More
-          <svg
-            class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </a>
+<!-- Quote Section -->
+<section class="quote-section">
+  <div class="container mx-auto px-4">
+    <div class="quote-content">
+      <div class="quote-icon">
+        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
       </div>
+      <p>"At Manglam Event, we believe that every moment of joy and celebration deserves to be enhanced with our expertise and creativity. We are dedicated to making your special occasions truly memorable and extraordinary."</p>
     </div>
   </div>
-  <div class="flex justify-center mt-10">
-    <a
-      routerLink="/services"
-      class="btn btn-primary text-lg px-8 py-4 hover-scale hover-glow inline-flex items-center mt-10"
-    >
-      View All Services
-    </a>
+</section>
+
+<!-- Services Preview Section -->
+<section class="services-preview">
+  <div class="container mx-auto px-4">
+    <div class="section-header">
+      <h2>Our Services</h2>
+      <p>Discover our comprehensive range of event planning and management services</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div *ngFor="let service of services.slice(0, 3)" class="service-card">
+        <div class="image-container">
+          <img [src]="service.image" [alt]="service.title">
+          <div class="overlay"></div>
+        </div>
+        <div class="content">
+          <div class="icon-title">
+            <i [class]="service.icon"></i>
+            <h3>{{ service.title }}</h3>
+          </div>
+          <p>{{ service.description }}</p>
+          <a routerLink="/services" class="learn-more">
+            Learn More
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-12">
+      <a routerLink="/services" class="cta-button">
+        View All Services
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- Stats Section -->
-<section
-  class="section bg-gradient-to-br from-indigo-600 to-indigo-800 dark:from-indigo-800 dark:to-indigo-900 text-white"
->
-  <div class="container">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-      <div
-        *ngFor="let stat of stats; let i = index"
-        class="glass-card p-8 transform hover:scale-105 transition-all duration-300 animate-on-scroll scale-in hover-glow"
-        [style.animation-delay]="i * 100 + 'ms'"
-        #animateOnScroll
-      >
-        <div class="text-4xl md:text-5xl font-bold mb-3 animate-pulse-slow">
-          {{ stat.value }}
-        </div>
-        <div class="text-lg text-indigo-100">{{ stat.label }}</div>
+<section class="stats-section">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div *ngFor="let stat of stats" class="stat-card">
+        <div class="value">{{ stat.value }}</div>
+        <div class="label">{{ stat.label }}</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Testimonials -->
-<section class="section bg-gray-50 dark:bg-gray-900">
-  <div class="container">
-    <h2
-      class="text-3xl md:text-4xl font-bold text-center mb-20 animate-on-scroll fade-up hover-float gradient-text"
-      #animateOnScroll
-    >
-      Client Stories
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      <div
-        *ngFor="let testimonial of testimonials; let i = index"
-        class="card p-8 animate-on-scroll fade-up hover-rotate"
-        [style.animation-delay]="i * 100 + 'ms'"
-        #animateOnScroll
-      >
-        <div class="flex items-center mb-8">
-          <app-avatar
-            [imageUrl]="testimonial.image"
-            [altText]="testimonial.name"
-            size="lg"
-            class="mr-4 animate-bounce-slow"
-          >
-          </app-avatar>
-          <div>
-            <div class="font-semibold text-lg dark:text-white">
-              {{ testimonial.name }}
-            </div>
-            <div class="text-gray-600 dark:text-gray-300">
-              {{ testimonial.company }}
-            </div>
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+  <div class="container mx-auto px-4">
+    <div class="section-header">
+      <h2>What Our Clients Say</h2>
+      <p>Hear from our satisfied clients about their experience with Manglam Event</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let testimonial of testimonials" class="testimonial-card">
+        <div class="header">
+          <app-avatar [imageUrl]="testimonial.avatar" [altText]="testimonial.name" class="w-16 h-16 mr-4"></app-avatar>
+          <div class="info">
+            <h3>{{ testimonial.name }}</h3>
+            <p>{{ testimonial.role }}</p>
           </div>
         </div>
-        <div class="relative">
-          <svg
-            class="absolute -top-4 -left-4 w-8 h-8 text-indigo-200 dark:text-indigo-800 animate-float"
-            fill="currentColor"
-            viewBox="0 0 32 32"
-          >
-            <path
-              d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"
-            />
-          </svg>
-          <p
-            class="text-gray-600 dark:text-gray-300 italic text-lg leading-relaxed"
-          >
-            {{ testimonial.quote }}
-          </p>
-        </div>
+        <p class="content">{{ testimonial.content }}</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CTA Section -->
-<section
-  class="section bg-gradient-to-br from-indigo-50 to-white dark:from-gray-900 dark:to-gray-800"
->
-  <div class="container text-center">
-    <div
-      class="max-w-3xl mx-auto card p-12 animate-on-scroll scale-in hover-float"
-      #animateOnScroll
-    >
-      <h2 class="text-3xl md:text-4xl font-bold mb-8 gradient-text">
-        Ready to Create Something Amazing?
-      </h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 mb-10 leading-relaxed">
-        Let's work together to bring your vision to life. Contact us today to
-        start planning your next event.
-      </p>
-      <a
-        routerLink="/contact"
-        class="btn btn-primary text-lg px-8 py-4 hover-scale hover-glow inline-flex items-center"
-      >
+<section class="cta-section">
+  <div class="container mx-auto px-4">
+    <div class="content">
+      <h2>Ready to Plan Your Event?</h2>
+      <p>Let's create something extraordinary together. Contact us today to get started on your dream event.</p>
+      <a routerLink="/contact" class="cta-button">
         Get in Touch
-        <svg
-          class="w-5 h-5 ml-2 animate-bounce-slow"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M17 8l4 4m0 0l-4 4m4-4H3"
-          />
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>
       </a>
     </div>
