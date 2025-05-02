@@ -1,25 +1,25 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 :root {
   // Theme Colors
   --primary: rgb(172, 20, 36);
   --primary-light: rgb(252, 12, 12);
   --primary-dark: rgb(140, 0, 0);
-  
+
   --text-primary: rgb(51, 51, 51);
   --text-secondary: rgb(102, 102, 102);
   --text-light: rgb(255, 255, 255);
-  
+
   --bg-primary: rgb(255, 255, 255);
   --bg-secondary: rgb(250, 250, 250);
   --bg-tertiary: rgb(245, 245, 245);
-  
+
   --border-light: rgb(230, 230, 230);
   --border-dark: rgb(200, 200, 200);
-  
+
   --shadow-light: rgba(0, 0, 0, 0.1);
   --shadow-dark: rgba(0, 0, 0, 0.2);
-  
+
   --overlay-light: rgba(255, 255, 255, 0.8);
   --overlay-dark: rgba(0, 0, 0, 0.5);
 }
@@ -28,21 +28,21 @@
   --primary: rgb(252, 12, 12);
   --primary-light: rgb(255, 50, 50);
   --primary-dark: rgb(172, 20, 36);
-  
+
   --text-primary: rgb(255, 255, 255);
   --text-secondary: rgb(200, 200, 200);
   --text-light: rgb(255, 255, 255);
-  
-  --bg-primary: rgb(17, 17, 17);
+
+  --bg-primary: #111828;
   --bg-secondary: rgb(26, 26, 26);
   --bg-tertiary: rgb(34, 34, 34);
-  
+
   --border-light: rgb(51, 51, 51);
   --border-dark: rgb(68, 68, 68);
-  
+
   --shadow-light: rgba(0, 0, 0, 0.3);
   --shadow-dark: rgba(0, 0, 0, 0.5);
-  
+
   --overlay-light: rgba(0, 0, 0, 0.7);
   --overlay-dark: rgba(0, 0, 0, 0.8);
 }
@@ -217,7 +217,7 @@ h3 {
 
 .theme-toggle {
   color: var(--text-secondary);
-  
+
   &:hover {
     background-color: var(--bg-secondary);
   }
@@ -225,15 +225,19 @@ h3 {
 
 .mobile-menu-button {
   color: var(--text-secondary);
-  
+
   &:hover {
     background-color: var(--bg-secondary);
   }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeInUp {
@@ -281,7 +285,8 @@ h3 {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -319,7 +324,8 @@ h3 {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {

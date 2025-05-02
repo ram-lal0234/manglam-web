@@ -1,71 +1,99 @@
 <!-- Hero Section -->
-<section class="hero-section">
-  <video autoplay loop muted playsinline>
+<section class="relative h-screen w-full overflow-hidden">
+  <video autoplay loop muted playsinline class="hero-video">
     <source src="../../../assets/videos/hero-video.mp4" type="video/mp4">
   </video>
-  <div class="overlay">
-    <div class="content">
-      <h1>Create Unforgettable Moments</h1>
-      <p>We transform your dreams into reality with our expert event planning and management services.</p>
+  <div class="hero-overlay">
+    <div class="hero-content" @fadeInUp>
+      <h1 class="mb-6">Create Unforgettable Moments</h1>
+      <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">We transform your dreams into reality with
+        our expert event planning and management services.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a routerLink="/contact" class="cta-button">
+        <a routerLink="/contact" class="btn cta-button inline-flex items-center">
           Get Started
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
         </a>
-        <a routerLink="/services" class="cta-button-secondary">
+        <a routerLink="/services"
+          class="btn bg-white text-[var(--primary)] hover:bg-gray-100 inline-flex items-center shadow-lg hover:shadow-xl">
           Our Services
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
         </a>
       </div>
     </div>
   </div>
+
+  <!-- Animated scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24"
+      stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
 </section>
 
 <!-- Quote Section -->
-<section class="quote-section">
-  <div class="container mx-auto px-4">
-    <div class="quote-content">
+<section class="section bg-[var(--bg-secondary)]" @fadeIn>
+  <div class="container">
+    <div class="max-w-4xl mx-auto text-center">
       <div class="quote-icon">
-        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        <svg class="w-12 h-12 mx-auto" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
         </svg>
       </div>
-      <p>"At Manglam Event, we believe that every moment of joy and celebration deserves to be enhanced with our expertise and creativity. We are dedicated to making your special occasions truly memorable and extraordinary."</p>
+      <p class="text-xl md:text-2xl italic leading-relaxed">"At Manglam Event, we
+        believe that every moment of joy and celebration deserves to be enhanced with our expertise and creativity. We
+        are dedicated to making your special occasions truly memorable and extraordinary."</p>
+      <div class="quote-divider"></div>
     </div>
   </div>
 </section>
 
 <!-- Services Preview Section -->
-<section class="services-preview">
-  <div class="container mx-auto px-4">
-    <div class="section-header">
-      <h2>Our Services</h2>
-      <p>Discover our comprehensive range of event planning and management services</p>
+<section class="section bg-[var(--bg-primary)]" @staggerFadeIn>
+  <div class="container">
+    <div class="text-center mb-16">
+      <h6 class="text-[var(--primary)] font-semibold uppercase tracking-wider mb-2">What We Offer</h6>
+      <h2 class="mb-4">Our Services</h2>
+      <p class="text-[var(--text-secondary)] max-w-2xl mx-auto">Discover our comprehensive range of event
+        planning and management services</p>
     </div>
+
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div *ngFor="let service of services.slice(0, 3)" class="service-card">
-        <div class="image-container">
-          <img [src]="service.image" [alt]="service.title">
-          <div class="overlay"></div>
-        </div>
-        <div class="content">
-          <div class="icon-title">
-            <i [class]="service.icon"></i>
-            <h3>{{ service.title }}</h3>
+        <img [src]="service.image" [alt]="service.title">
+        <div class="service-overlay"></div>
+        <div class="service-content">
+          <div class="flex items-center mb-3">
+            <i [class]="service.icon + ' text-2xl text-[var(--primary-light)] mr-3'"></i>
+            <h3 class="text-xl font-bold">{{ service.title }}</h3>
           </div>
-          <p>{{ service.description }}</p>
-          <a routerLink="/services" class="learn-more">
+          <p class="mb-4 opacity-80 line-clamp-3">{{ service.description }}</p>
+          <a routerLink="/services"
+            class="inline-flex items-center bg-[var(--primary)] hover:bg-[var(--primary-dark)] py-2 px-4 rounded-full transition-all duration-300 text-sm text-white">
             Learn More
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </a>
         </div>
       </div>
     </div>
+
     <div class="text-center mt-12">
-      <a routerLink="/services" class="cta-button">
+      <a routerLink="/services"
+        class="inline-flex items-center justify-center bg-transparent text-[var(--primary)] hover:text-[var(--primary-dark)] border-2 border-[var(--primary)] hover:border-[var(--primary-dark)] font-medium py-3 px-8 rounded-full transition-all duration-300">
         View All Services
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>
       </a>
     </div>
@@ -73,49 +101,63 @@
 </section>
 
 <!-- Stats Section -->
-<section class="stats-section">
-  <div class="container mx-auto px-4">
+<section class="section bg-[var(--bg-secondary)]" @scaleIn>
+  <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div *ngFor="let stat of stats" class="stat-card">
-        <div class="value">{{ stat.value }}</div>
-        <div class="label">{{ stat.label }}</div>
+        <div class="stat-value">{{ stat.value }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Testimonials Section -->
-<section class="testimonials-section">
-  <div class="container mx-auto px-4">
-    <div class="section-header">
-      <h2>What Our Clients Say</h2>
-      <p>Hear from our satisfied clients about their experience with Manglam Event</p>
+<section class="section bg-[var(--bg-primary)]" @fadeInUp>
+  <div class="container">
+    <div class="text-center mb-16">
+      <h6 class="text-[var(--primary)] font-semibold uppercase tracking-wider mb-2">Testimonials</h6>
+      <h2 class="mb-4">What Our Clients Say</h2>
+      <p class="text-[var(--text-secondary)] max-w-2xl mx-auto">Hear from our satisfied clients about their
+        experience with Manglam Event</p>
     </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div *ngFor="let testimonial of testimonials" class="testimonial-card">
-        <div class="header">
-          <app-avatar [imageUrl]="testimonial.avatar" [altText]="testimonial.name" class="w-16 h-16 mr-4"></app-avatar>
-          <div class="info">
+        <div class="testimonial-header">
+          <app-avatar [imageUrl]="testimonial.avatar" [altText]="testimonial.name"
+            class="w-16 h-16 mr-4 rounded-full overflow-hidden"></app-avatar>
+          <div class="testimonial-info">
             <h3>{{ testimonial.name }}</h3>
             <p>{{ testimonial.role }}</p>
           </div>
         </div>
-        <p class="content">{{ testimonial.content }}</p>
+        <div class="relative">
+          <svg class="absolute -top-4 -left-4 w-8 h-8 opacity-20 text-[var(--primary)]" fill="currentColor"
+            viewBox="0 0 24 24">
+            <path
+              d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+          <p class="testimonial-content">{{ testimonial.content }}</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CTA Section -->
-<section class="cta-section">
-  <div class="container mx-auto px-4">
-    <div class="content">
-      <h2>Ready to Plan Your Event?</h2>
-      <p>Let's create something extraordinary together. Contact us today to get started on your dream event.</p>
-      <a routerLink="/contact" class="cta-button">
+<section class="section cta-section text-white" @slideInRight>
+  <div class="container">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="mb-6">Ready to Plan Your Event?</h2>
+      <p class="text-xl mb-10 opacity-90 max-w-3xl mx-auto">Let's create something extraordinary together. Contact us
+        today to get started on your dream event.</p>
+      <a routerLink="/contact"
+        class="btn bg-white text-[var(--primary)] hover:bg-gray-100 inline-flex items-center shadow-lg hover:shadow-xl">
         Get in Touch
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>
       </a>
     </div>
