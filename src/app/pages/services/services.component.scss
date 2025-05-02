@@ -1,16 +1,254 @@
-.service-card {
-  transition: transform 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
+/* Services component specific styles */
+:host {
+  display: block;
+}
+
+/* Hero section */
+.services-hero {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: var(--overlay-dark);
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    color: var(--text-light);
+    max-width: 64rem;
+    padding: 0 1rem;
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 6px var(--shadow-dark);
+    }
+
+    p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
   }
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+/* Services grid */
+.service-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 6px var(--shadow-light);
+  transition: all 0.3s ease;
+  height: 28rem;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 8px 12px var(--shadow-dark);
+  }
+
+  .service-image {
+    position: relative;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    }
+  }
+
+  .service-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    color: var(--text-light);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    transition: all 0.3s ease;
+
+    .service-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+
+      i {
+        font-size: 1.5rem;
+        color: var(--primary);
+        transition: transform 0.3s ease;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+
+    p {
+      margin: 0;
+      opacity: 0.9;
+    }
+  }
+
+  &:hover {
+    .service-content {
+      .service-title {
+        i {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
 }
 
-.section {
-  padding: 4rem 0;
+/* Benefits section */
+.benefits-section {
+  background-color: var(--bg-secondary);
+}
+
+.benefit-card {
+  padding: 2rem;
+  background-color: var(--bg-primary);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px var(--shadow-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 8px 12px var(--shadow-dark);
+  }
+
+  .benefit-icon {
+    margin-bottom: 1.5rem;
+
+    i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+  }
+
+  h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  &:hover {
+    .benefit-icon {
+      i {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+/* CTA section */
+.cta-section {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, var(--primary) 0%, var(--primary-light) 100%);
+    opacity: 0.9;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    &:hover::after {
+      transform: translateX(100%);
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .services-hero {
+    height: 60vh;
+    min-height: 400px;
+
+    .hero-content {
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .service-card {
+    height: 24rem;
+  }
 }

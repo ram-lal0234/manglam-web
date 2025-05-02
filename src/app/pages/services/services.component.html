@@ -1,67 +1,105 @@
 <!-- Hero Section -->
-<section class="relative min-h-[50vh] flex items-center justify-center bg-gray-900">
-  <div class="absolute inset-0">
-    <img
-      src="../../../assets/images/services-bg.jpg"
-      alt="Services Background"
-      class="w-full h-full object-cover"
-    >
-    <div class="absolute inset-0 bg-[rgb(172,20,36)]/80"></div>
+<section class="services-hero relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+  <div class="hero-bg absolute inset-0 w-full h-full">
+    <img src="../../../assets/images/services-bg.jpg" alt="Services Background" class="w-full h-full object-cover">
+    <div class="overlay absolute inset-0 bg-[var(--overlay-dark)]"></div>
   </div>
-  <div class="relative container mx-auto px-4 text-center">
-    <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Our Services</h1>
-    <p class="text-xl text-white/90 max-w-2xl mx-auto">
-      Discover our comprehensive range of event planning and management services
-    </p>
+  <div class="hero-content relative text-center max-w-4xl px-4">
+    <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">Our Services</h1>
+    <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">Discover our comprehensive range of event planning and management services</p>
   </div>
 </section>
 
-<!-- Services Grid -->
-<section class="py-16">
-  <div class="container mx-auto px-4">
+<!-- Wedding Services Section -->
+<section class="section py-24 bg-[var(--bg-primary)]">
+  <div class="container">
+    <div class="text-center mb-20">
+      <span class="inline-block text-[var(--primary)] font-semibold uppercase tracking-wider mb-4 text-sm">Wedding Services</span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">Complete Wedding Solutions</h2>
+      <p class="text-[var(--text-secondary)] max-w-2xl mx-auto text-lg leading-relaxed">From planning to execution, we handle every aspect of your wedding with care and expertise</p>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div
-        *ngFor="let service of services"
-        class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
-      >
-        <div class="relative h-48">
-          <img
-            [src]="service.image"
-            [alt]="service.title"
-            class="w-full h-full object-cover"
-          >
-          <div class="absolute inset-0 bg-gradient-to-t from-[rgb(172,20,36)]/80 to-transparent"></div>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center mb-4">
-            <i [class]="service.icon" class="text-[rgb(172,20,36)] text-2xl mr-3"></i>
-            <h3 class="text-xl font-semibold text-gray-900">
-              {{ service.title }}
-            </h3>
+      <div *ngFor="let service of services.slice(0, 12)" class="service-card group">
+        <img [src]="service.image" [alt]="service.title" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="service-overlay absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        <div class="service-content absolute bottom-0 left-0 right-0 p-8 text-white">
+          <div class="flex items-center mb-3">
+            <i [class]="service.icon + ' text-2xl text-[var(--primary-light)] mr-3'"></i>
+            <h3 class="text-xl font-bold">{{ service.title }}</h3>
           </div>
-          <p class="text-gray-600 mb-4">
-            {{ service.description }}
-          </p>
+          <p class="mb-4 opacity-80 line-clamp-3">{{ service.description }}</p>
+          <a routerLink="/contact" class="inline-flex items-center bg-[var(--primary)] hover:bg-[var(--primary-dark)] py-2 px-4 rounded-full transition-all duration-300 text-sm text-white">
+            Learn More
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Other Services Section -->
+<section class="section py-24 bg-[var(--bg-secondary)]">
+  <div class="container">
+    <div class="text-center mb-20">
+      <span class="inline-block text-[var(--primary)] font-semibold uppercase tracking-wider mb-4 text-sm">Other Services</span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">Special Events & More</h2>
+      <p class="text-[var(--text-secondary)] max-w-2xl mx-auto text-lg leading-relaxed">We also specialize in various other events and services to meet all your celebration needs</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let service of services.slice(12)" class="service-card group">
+        <img [src]="service.image" [alt]="service.title" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="service-overlay absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        <div class="service-content absolute bottom-0 left-0 right-0 p-8 text-white">
+          <div class="flex items-center mb-3">
+            <i [class]="service.icon + ' text-2xl text-[var(--primary-light)] mr-3'"></i>
+            <h3 class="text-xl font-bold">{{ service.title }}</h3>
+          </div>
+          <p class="mb-4 opacity-80 line-clamp-3">{{ service.description }}</p>
+          <a routerLink="/contact" class="inline-flex items-center bg-[var(--primary)] hover:bg-[var(--primary-dark)] py-2 px-4 rounded-full transition-all duration-300 text-sm text-white">
+            Learn More
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="section benefits-section py-24 bg-[var(--bg-primary)]">
+  <div class="container">
+    <div class="text-center mb-20">
+      <span class="inline-block text-[var(--primary)] font-semibold uppercase tracking-wider mb-4 text-sm">Why Choose Us</span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">Our Benefits</h2>
+      <p class="text-[var(--text-secondary)] max-w-2xl mx-auto text-lg leading-relaxed">We bring expertise, creativity, and meticulous attention to detail to every event we plan</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div *ngFor="let benefit of benefits" class="benefit-card group p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+        <div class="benefit-icon mb-6 text-[var(--primary)]">
+          <i [class]="benefit.icon" class="text-4xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4 text-[var(--text-primary)]">{{ benefit.title }}</h3>
+        <p class="text-[var(--text-secondary)]">{{ benefit.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA Section -->
-<section class="py-16 bg-[rgb(172,20,36)]">
-  <div class="container mx-auto px-4">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-        Ready to Plan Your Event?
-      </h2>
-      <p class="text-xl text-white/90 mb-8">
-        Let's create something extraordinary together. Contact us today to get started.
-      </p>
-      <a
-        routerLink="/contact"
-        class="bg-white hover:bg-gray-100 text-[rgb(172,20,36)] px-8 py-3 rounded-md text-lg font-medium transition-colors duration-300"
-      >
+<section class="section cta-section py-24 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)]">
+  <div class="container">
+    <div class="max-w-3xl mx-auto text-center text-white">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Plan Your Event?</h2>
+      <p class="text-xl mb-8 text-white/90">Let's create something extraordinary together. Contact us today to get started.</p>
+      <a routerLink="/contact" class="cta-button inline-block px-8 py-4 bg-white text-[var(--primary)] font-semibold rounded-full hover:bg-white/90 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
         Get in Touch
       </a>
     </div>
