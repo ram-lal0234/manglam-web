@@ -25,15 +25,15 @@ export class NavbarComponent {
   isMenuOpen = false;
   isDarkMode = false;
   isScrolled = false;
-  showThemeToggle = false; // Hide theme toggle by default
+  showThemeToggle = true; // Hide theme toggle by default
 
   // Navigation menu items array
   navItems = [
     { path: '/', label: 'Home', exact: true },
+    { path: '/about', label: 'About Us', exact: false },
     { path: '/services', label: 'Services', exact: false },
     // { path: '/portfolio', label: 'Portfolio', exact: false },
-    { path: '/about', label: 'About Us', exact: false },
-    { path: '/contact', label: 'Contact', exact: false }
+    { path: '/contact', label: 'Contact', exact: false },
   ];
 
   constructor() {

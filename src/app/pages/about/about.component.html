@@ -1,113 +1,56 @@
 <!-- Hero Section -->
-<section class="relative min-h-[70vh] flex items-center overflow-hidden">
-  <div class="absolute inset-0 z-0">
-    <img src="assets/images/about/hero-bg.jpg" 
-         alt="About Us" 
-         class="w-full h-full object-cover">
-    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.1)_0%,transparent_100%)]"></div>
+<section class="services-hero relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+  <div class="hero-bg absolute inset-0 w-full h-full">
+    <img src="assets/images/about/hero-bg.jpg" alt="About Us" class="w-full h-full object-cover">
+    <div class="overlay absolute inset-0 bg-[var(--overlay-dark)]"></div>
   </div>
-  
-  <div class="container relative z-10 text-white">
-    <div class="max-w-3xl">
-      <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight animate-fade-in hover-float">
-        <span class="gradient-text">Our Story</span><br>
-        Crafting Excellence Since 2008
-      </h1>
-      <p class="text-xl md:text-2xl mb-10 text-gray-200 animate-fade-in-up leading-relaxed">
-        Creating extraordinary events across the globe with passion, creativity, and precision.
+  <div class="hero-content relative text-center max-w-4xl px-4">
+    <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+      <span>Our Story</span><br>
+      A Legacy of Creativity
+    </h1>
+    <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
+      Rooted in tradition, driven by innovation, and dedicated to creating unforgettable moments.
+    </p>
+  </div>
+</section>
+
+<!-- Our Legacy Section -->
+<section class="section bg-[var(--bg-primary)] py-24">
+  <div class="container">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <span class="inline-block text-[var(--primary)] font-semibold uppercase tracking-wider mb-4 text-sm">Our
+        Legacy</span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">A Family Tradition</h2>
+      <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+        Rooted in a family legacy of decor and production, Mr Naveen Rajpurohit proudly represents the third generation
+        of a passionate lineage in the creative decor industry.
       </p>
     </div>
-  </div>
-</section>
 
-<!-- Mission Section -->
-<section class="section bg-white dark:bg-gray-900">
-  <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-      <div class="animate-on-scroll fade-left" #animateOnScroll>
-        <h2 class="text-3xl md:text-4xl font-bold mb-8 hover-float gradient-text">Our Mission</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300 mb-10 leading-relaxed">
-          To transform ordinary moments into extraordinary memories through innovative event planning and flawless execution.
+      <div class="relative">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/20 to-transparent rounded-3xl transform rotate-3">
+        </div>
+        <img src="assets/images/event-bg.jpg" alt="Our Legacy"
+          class="rounded-3xl shadow-2xl relative z-10 hover-rotate transition-transform duration-300">
+      </div>
+      <div>
+        <p class="text-[var(--text-secondary)] text-lg leading-relaxed mb-8">
+          With a background steeped in tradition, Naveen has always stood out for his drive to innovate, his visionary
+          approach, and his passion for doing things differently. While working in the wedding industry, he developed a
+          deep curiosity about the behind-the-scenes aspects of planning and execution—observing patterns, identifying
+          challenges, and seeking ways to elevate the entire experience.
         </p>
         <div class="grid grid-cols-2 gap-8">
-          <div class="glass-card p-8 text-center transform hover:scale-105 transition-all duration-300">
-            <div class="text-4xl md:text-5xl font-bold mb-3 gradient-text animate-pulse-slow">500+</div>
-            <div class="text-gray-600 dark:text-gray-300">Events Completed</div>
+          <div class="p-8 text-center transform hover:scale-105 transition-all duration-300 bg-[var(--bg-secondary)]">
+            <div class="text-4xl md:text-5xl font-bold mb-3  text-[var(--primary)]">3rd</div>
+            <div class="text-[var(--text-secondary)]">Generation</div>
           </div>
-          <div class="glass-card p-8 text-center transform hover:scale-105 transition-all duration-300">
-            <div class="text-4xl md:text-5xl font-bold mb-3 gradient-text animate-pulse-slow">15+</div>
-            <div class="text-gray-600 dark:text-gray-300">Years Experience</div>
-          </div>
-        </div>
-      </div>
-      <div class="relative animate-on-scroll fade-right" #animateOnScroll>
-        <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-pink-500/20 rounded-3xl transform rotate-3"></div>
-        <img src="assets/images/about/mission.jpg" 
-             alt="Our Mission" 
-             class="rounded-3xl shadow-2xl relative z-10 hover-rotate transition-transform duration-300">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Milestones -->
-<section class="section bg-gray-50 dark:bg-gray-800">
-  <div class="container">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll fade-up hover-float gradient-text" #animateOnScroll>
-      Our Journey
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div *ngFor="let milestone of milestones; let i = index" 
-           class="card p-8 animate-on-scroll fade-up hover-rotate"
-           [style.animation-delay]="i * 100 + 'ms'"
-           #animateOnScroll>
-        <div class="text-2xl font-bold gradient-text mb-4">
-          {{milestone.year}}
-        </div>
-        <h3 class="text-xl font-semibold mb-4 dark:text-white">{{milestone.title}}</h3>
-        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{{milestone.description}}</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Global Offices -->
-<section class="section bg-white dark:bg-gray-900">
-  <div class="container">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll fade-up hover-float gradient-text" #animateOnScroll>
-      Our Global Presence
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div *ngFor="let office of offices; let i = index" 
-           class="card overflow-hidden animate-on-scroll fade-up hover-rotate"
-           [style.animation-delay]="i * 100 + 'ms'"
-           #animateOnScroll>
-        <div class="relative h-48 overflow-hidden">
-          <img [src]="office.image" 
-               [alt]="office.city"
-               class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          <h3 class="absolute bottom-4 left-4 text-xl font-bold text-white">{{office.city}}</h3>
-        </div>
-        <div class="p-6">
-          <div class="space-y-3 text-gray-600 dark:text-gray-300">
-            <p class="flex items-center">
-              <i class="fas fa-map-marker-alt w-5 text-indigo-500 dark:text-indigo-400"></i>
-              {{office.address}}
-            </p>
-            <p class="flex items-center">
-              <i class="fas fa-phone w-5 text-indigo-500 dark:text-indigo-400"></i>
-              {{office.phone}}
-            </p>
-            <p class="flex items-center">
-              <i class="fas fa-envelope w-5 text-indigo-500 dark:text-indigo-400"></i>
-              {{office.email}}
-            </p>
-            <p class="flex items-center text-sm">
-              <i class="fas fa-clock w-5 text-indigo-500 dark:text-indigo-400"></i>
-              {{office.timezone}}
-            </p>
+          <div class="p-8 text-center transform hover:scale-105 transition-all duration-300 bg-[var(--bg-secondary)]">
+            <div class="text-4xl md:text-5xl font-bold mb-3 text-[var(--primary)]">100%</div>
+            <div class="text-[var(--text-secondary)]">Passion</div>
           </div>
         </div>
       </div>
@@ -115,23 +58,133 @@
   </div>
 </section>
 
-<!-- Values -->
-<section class="section bg-gradient-to-br from-indigo-50 to-white dark:from-gray-900 dark:to-gray-800">
+<!-- Our Journey Section -->
+<section class="section bg-[var(--bg-secondary)] py-24">
   <div class="container">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll fade-up hover-float gradient-text" #animateOnScroll>
-      Our Values
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      <div *ngFor="let value of values; let i = index" 
-           class="glass-card p-8 text-center animate-on-scroll fade-up hover-rotate"
-           [style.animation-delay]="i * 100 + 'ms'"
-           #animateOnScroll>
-        <div class="w-20 h-20 bg-indigo-50 dark:bg-indigo-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/50 transition-colors duration-300 animate-float">
-          <i [class]="value.icon + ' text-4xl text-indigo-600 dark:text-indigo-400'"></i>
-        </div>
-        <h3 class="text-xl font-semibold mb-4 dark:text-white">{{value.title}}</h3>
-        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{{value.description}}</p>
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <span class="inline-block text-[var(--primary)] font-semibold uppercase tracking-wider mb-4 text-sm">Our
+        Journey</span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">The Beginning</h2>
+      <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+        During one such event, Naveen crossed paths with Mansi Maheshwari and Aakash Maheshwari—two dynamic individuals
+        managing a wedding segment with remarkable precision and creativity.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-[var(--text-secondary)] text-lg leading-relaxed mb-8">
+          Their creativity and precision left a lasting impression on Naveen. Intrigued by their work, he initiated a
+          conversation, and soon, the three decided to spend more time together to exchange ideas and understand each
+          other's visions. This led to a memorable trip to Mumbai in May 2022.
+        </p>
+        <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+          During this journey, on the 23rd of May 2022, a simple conversation between three sparked a powerful
+          idea—Naveen who had already envisioned the brand, shared his vision of starting an event company, and both
+          Mansi and Aakash immediately resonated with the concept.
+        </p>
       </div>
+      <div class="relative">
+        <div
+          class="absolute inset-0 bg-gradient-to-l from-[var(--primary)]/20 to-transparent rounded-3xl transform -rotate-3">
+        </div>
+        <img src="assets/images/about/journey.jpg" alt="Our Journey"
+          class="rounded-3xl shadow-2xl relative z-10 hover-rotate transition-transform duration-300">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Philosophy Section -->
+<section class="section bg-[var(--bg-primary)] py-24">
+  <div class="container">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <span class="inline-block text-[var(--primary)] font-semibold uppercase tracking-wider mb-4 text-sm">Our
+        Philosophy</span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">The Meaning of Manglam</h2>
+      <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+        The word Manglam signifies purity and auspiciousness. We chose this name for our company because, for us, being
+        a part of someone's precious moments and special day is an absolute honor.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div class="relative">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/20 to-transparent rounded-3xl transform rotate-3">
+        </div>
+        <img src="assets/images/about/philosophy.jpg" alt="Our Philosophy"
+          class="rounded-3xl shadow-2xl relative z-10 hover-rotate transition-transform duration-300">
+      </div>
+      <div>
+        <p class="text-[var(--text-secondary)] text-lg leading-relaxed mb-8">
+          At the heart of every wedding lies a beautiful promise—a lifetime bond not just between two people, but
+          between two families. At Manglam Event, we understand the depth of that connection, and we're here to
+          transform your wedding into a luxurious, personal, and unforgettable celebration.
+        </p>
+        <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+          We believe your wedding day should be about soaking in every brilliant moment—laughing with your friends,
+          talking with your family, and feeling every emotion as it unfolds. That's why we work quietly behind the
+          scenes, handling every detail with care and precision, so you can be completely present.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Approach Section -->
+<section class="section bg-[var(--bg-secondary)] py-24">
+  <div class="container">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <span class="inline-block text-[var(--primary)] font-semibold uppercase tracking-wider mb-4 text-sm">Our
+        Approach</span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 text-[var(--text-primary)]">Crafting Your Story</h2>
+      <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+        Every celebration we plan is handcrafted and tailored entirely to your needs. From intimate gatherings to grand
+        affairs, we pour our passion, commitment, and signature attention to detail into bringing your dream to life.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="glass-card p-8 text-center transform hover:scale-105 transition-all duration-300">
+        <div class="w-20 h-20 bg-[var(--primary)]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-paint-brush text-4xl text-[var(--primary)]"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4 text-[var(--text-primary)]">Custom Design</h3>
+        <p class="text-[var(--text-secondary)]">Our young, vibrant team of designers works closely with local artists
+          and craftsmen to custom-design every element of your functions.</p>
+      </div>
+      <div class="glass-card p-8 text-center transform hover:scale-105 transition-all duration-300">
+        <div class="w-20 h-20 bg-[var(--primary)]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-hands-helping text-4xl text-[var(--primary)]"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4 text-[var(--text-primary)]">Seamless Experience</h3>
+        <p class="text-[var(--text-secondary)]">We assist you at every step of the planning process, connect you with
+          the best service providers, and offer thoughtful gift solutions.</p>
+      </div>
+      <div class="glass-card p-8 text-center transform hover:scale-105 transition-all duration-300">
+        <div class="w-20 h-20 bg-[var(--primary)]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-heart text-4xl text-[var(--primary)]"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4 text-[var(--text-primary)]">Personal Touch</h3>
+        <p class="text-[var(--text-secondary)]">Our hospitality is personified from the very first hello to the final
+          goodbye, ensuring every moment feels special.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section py-24 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)]">
+  <div class="container">
+    <div class="max-w-3xl mx-auto text-center text-white">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Let's Bring Your Dreamland to Life</h2>
+      <p class="text-xl mb-8 text-white/90">From concept to celebration, we're here to make your wedding less about the
+        hassle and more about the joy.</p>
+      <a routerLink="/contact"
+        class="cta-button inline-block px-8 py-4 bg-white text-[var(--primary)] font-semibold rounded-full hover:bg-white/90 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+        Get in Touch
+      </a>
     </div>
   </div>
 </section>
