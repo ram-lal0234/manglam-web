@@ -73,6 +73,9 @@
   
   h1 {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to right, var(--text-light), var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
@@ -164,6 +167,9 @@
     margin-bottom: 0.5rem;
     position: relative;
     z-index: 1;
+    background: linear-gradient(to right, var(--primary), var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .stat-label {
@@ -233,6 +239,7 @@
   color: var(--primary);
   margin-bottom: 1.5rem;
   transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .quote-divider {
@@ -278,7 +285,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    // background: url('../../../assets/images/pattern.png');
+    background-image: 
+      linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.1) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.1) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
     opacity: 0.1;
     animation: patternMove 20s linear infinite;
   }
@@ -286,10 +299,10 @@
 
 @keyframes patternMove {
   0% {
-    background-position: 0 0;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   }
   100% {
-    background-position: 100% 100%;
+    background-position: 20px 20px, 20px 30px, 30px 10px, 10px 20px;
   }
 }
 
@@ -352,5 +365,21 @@
       background: white;
       color: var(--primary);
     }
+  }
+}
+
+/* SVG Animations */
+svg {
+  &.animate-wave {
+    animation: wave 10s linear infinite;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
