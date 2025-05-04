@@ -112,6 +112,8 @@ import { every, first } from 'rxjs';
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChildren('animateOnScroll') animateElements!: QueryList<ElementRef>;
 
+  isDarkMode = false;
+
   services = [
     {
       icon: 'fas fa-globe-asia',
@@ -173,7 +175,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
 
   ngOnInit() {
-    // Additional initialization logic if needed
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      this.isDarkMode = savedTheme === 'dark';
+      this.applyTheme();
+    } else {
+      // Check system preference
+      this.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.applyTheme();
+    }
+  }
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    this.applyTheme();
+    localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+  }
+
+  private applyTheme() {
+    if (this.isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   }
 
   ngAfterViewInit() {

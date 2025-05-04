@@ -3,6 +3,18 @@
   animation: float 3s ease-in-out infinite;
 }
 
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
 @keyframes float {
   0% {
     transform: translateY(0);
@@ -15,9 +27,22 @@
   }
 }
 
+/* Particles background */
+.particles-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  pointer-events: none;
+}
+
 /* Style overrides specific to home component */
 :host {
   display: block;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Hero section modifications */
@@ -27,15 +52,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 0;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background-color: var(--overlay-dark);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 .hero-content {
@@ -43,6 +70,10 @@
   max-width: 64rem;
   padding: 0 1rem;
   color: var(--text-light);
+  
+  h1 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
 }
 
 /* Service card styles */
@@ -51,15 +82,18 @@
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 4px 6px var(--shadow-light);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   height: 24rem;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   &:hover {
-    transform: translateY(-0.5rem);
+    transform: translateY(-0.5rem) scale(1.02);
     box-shadow: 0 8px 12px var(--shadow-dark);
     
-    img {
-      transform: scale(1.1);
+    .service-content {
+      transform: translateY(0);
     }
   }
 
@@ -83,6 +117,9 @@
     right: 0;
     padding: 1.5rem;
     color: var(--text-light);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(5px);
   }
 }
 
@@ -90,13 +127,34 @@
 .stat-card {
   text-align: center;
   padding: 2rem;
-  background-color: var(--bg-primary);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 1rem;
   box-shadow: 0 4px 6px var(--shadow-light);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   &:hover {
     transform: scale(1.05);
+    
+    &::before {
+      transform: scale(1);
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--primary-light), transparent);
+    opacity: 0.1;
+    transform: scale(0);
+    transition: transform 0.3s ease;
   }
 
   .stat-value {
@@ -104,23 +162,46 @@
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
   }
 
   .stat-label {
     color: var(--text-secondary);
+    position: relative;
+    z-index: 1;
   }
 }
 
-/* Testimonial card styles */
+/* Testimonial carousel */
+.testimonial-carousel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .testimonial-card {
-  background-color: var(--bg-secondary);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 4px 6px var(--shadow-light);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  scroll-snap-align: start;
+  min-width: 300px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   &:hover {
-    transform: translateY(-0.25rem);
+    transform: translateY(-0.25rem) scale(1.02);
     box-shadow: 0 8px 12px var(--shadow-dark);
   }
 
@@ -151,6 +232,7 @@
 .quote-icon {
   color: var(--primary);
   margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
 }
 
 .quote-divider {
@@ -159,11 +241,66 @@
   background-color: var(--primary);
   margin: 1.5rem auto 0;
   border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* CTA section */
 .cta-section {
   background: linear-gradient(to right, var(--primary), var(--primary-light));
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background: url('../../../assets/images/pattern.png');
+    opacity: 0.1;
+    animation: patternMove 20s linear infinite;
+  }
+}
+
+@keyframes patternMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* Parallax effect */
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Client logo grid */
@@ -175,5 +312,45 @@
   &:hover {
     filter: grayscale(0);
     opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Theme switcher */
+.theme-switcher {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 6px var(--shadow-light);
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+
+    &.dark {
+      background: var(--primary);
+      color: white;
+    }
+
+    &.light {
+      background: white;
+      color: var(--primary);
+    }
   }
 }
