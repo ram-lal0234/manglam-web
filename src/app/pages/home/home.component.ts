@@ -48,34 +48,24 @@ import { every, first } from 'rxjs';
     trigger('fadeInUp', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateY(20px)' }),
-        animate(
-          '0.5s ease-out',
-          style({ opacity: 1, transform: 'translateY(0)' })
-        ),
-      ]),
+        animate('0.6s cubic-bezier(0.4, 0, 0.2, 1)', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
     ]),
     trigger('staggerFadeIn', [
       transition('* => *', [
-        query(
-          ':enter',
-          [
-            style({ opacity: 0, transform: 'translateY(20px)' }),
-            stagger(100, [
-              animate(
-                '0.5s ease-out',
-                style({ opacity: 1, transform: 'translateY(0)' })
-              ),
-            ]),
-          ],
-          { optional: true }
-        ),
-      ]),
+        query(':enter', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(100, [
+            animate('0.6s cubic-bezier(0.4, 0, 0.2, 1)', style({ opacity: 1, transform: 'translateY(0)' }))
+          ])
+        ], { optional: true })
+      ])
     ]),
     trigger('scaleIn', [
       transition(':enter', [
-        style({ opacity: 0, transform: 'scale(0.95)' }),
-        animate('0.5s ease-out', style({ opacity: 1, transform: 'scale(1)' })),
-      ]),
+        style({ opacity: 0, transform: 'scale(0.8)' }),
+        animate('0.6s cubic-bezier(0.4, 0, 0.2, 1)', style({ opacity: 1, transform: 'scale(1)' }))
+      ])
     ]),
     trigger('float', [
       transition(':enter', [
@@ -92,11 +82,8 @@ import { every, first } from 'rxjs';
     trigger('slideInRight', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateX(50px)' }),
-        animate(
-          '0.6s ease-out',
-          style({ opacity: 1, transform: 'translateX(0)' })
-        ),
-      ]),
+        animate('0.6s cubic-bezier(0.4, 0, 0.2, 1)', style({ opacity: 1, transform: 'translateX(0)' }))
+      ])
     ]),
     trigger('rotateIn', [
       transition(':enter', [
@@ -202,20 +189,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    this.initializeScrollAnimations();
+  }
 
-    this.animateElements.forEach((element) => {
-      observer.observe(element.nativeElement);
+  private initializeScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px'
+    });
+
+    // Observe all sections
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
     });
   }
 }

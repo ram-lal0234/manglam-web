@@ -1,13 +1,63 @@
 import { Component, AfterViewInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { trigger, transition, style, animate, keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-about',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  styleUrls: ['./about.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.6s cubic-bezier(0.4, 0, 0.2, 1)', style({ opacity: 1 }))
+      ])
+    ]),
+    trigger('slideInLeft', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)', opacity: 0 }),
+        animate('0.6s cubic-bezier(0.4, 0, 0.2, 1)', style({ transform: 'translateX(0)', opacity: 1 }))
+      ])
+    ]),
+    trigger('slideInRight', [
+      transition(':enter', [
+        style({ transform: 'translateX(100%)', opacity: 0 }),
+        animate('0.6s cubic-bezier(0.4, 0, 0.2, 1)', style({ transform: 'translateX(0)', opacity: 1 }))
+      ])
+    ]),
+    trigger('fadeInUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('0.6s cubic-bezier(0.4, 0, 0.2, 1)', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ]),
+    trigger('staggerFadeIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('0.6s cubic-bezier(0.4, 0, 0.2, 1)', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ]),
+    trigger('scaleIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.8)' }),
+        animate('0.6s cubic-bezier(0.4, 0, 0.2, 1)', style({ opacity: 1, transform: 'scale(1)' }))
+      ])
+    ]),
+    trigger('float', [
+      transition(':enter', [
+        animate(
+          '3s ease-in-out infinite',
+          keyframes([
+            style({ transform: 'translateY(0)' }),
+            style({ transform: 'translateY(-10px)' }),
+            style({ transform: 'translateY(0)' })
+          ])
+        )
+      ])
+    ])
+  ]
 })
 export class AboutComponent implements AfterViewInit {
   @ViewChildren('animateOnScroll') animateElements!: QueryList<ElementRef>;
@@ -93,17 +143,14 @@ export class AboutComponent implements AfterViewInit {
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-            if (entry.target.classList.contains('fade-up')) {
-              entry.target.classList.add('translate-y-0');
-            } else if (entry.target.classList.contains('fade-left')) {
-              entry.target.classList.add('translate-x-0');
-            } else if (entry.target.classList.contains('fade-right')) {
-              entry.target.classList.add('translate-x-0');
-            } else if (entry.target.classList.contains('scale-in')) {
-              entry.target.classList.add('scale-100');
-            } else if (entry.target.classList.contains('bounce-in')) {
-              entry.target.classList.add('scale-100');
+            entry.target.classList.add('visible');
+            // Add animation classes based on element type
+            if (entry.target.classList.contains('service-card')) {
+              entry.target.classList.add('animate-fade-in-up');
+            } else if (entry.target.classList.contains('stat-card')) {
+              entry.target.classList.add('animate-scale-in');
+            } else if (entry.target.classList.contains('testimonial-card')) {
+              entry.target.classList.add('animate-slide-in-up');
             }
           }
         });
@@ -113,8 +160,9 @@ export class AboutComponent implements AfterViewInit {
       }
     );
 
-    this.animateElements.forEach(element => {
-      observer.observe(element.nativeElement);
+    // Observe all sections and animated elements
+    document.querySelectorAll('.section, .service-card, .stat-card, .testimonial-card').forEach(element => {
+      observer.observe(element);
     });
   }
 }
